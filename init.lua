@@ -134,9 +134,22 @@ local lua_lsp_config = {
       hint = { enable = true, semicolon = 'Disable' },
     },
   },
+  capabilities = capabilities,
+}
+
+local rust_analyzer_config = {
+    cmd = { 'rust-analyzer' },
+    filetypes = { 'rust' },
+    root_markers = { {'Cargo.tom'} },
     capabilities = capabilities,
+    settings = {
+
+    }
 }
 
 vim.lsp.config('lua_ls', lua_lsp_config)
 vim.lsp.enable('lua_ls')
+
+vim.lsp.config('rust_analyzer', rust_analyzer_config)
+vim.lsp.enable('rust_analyzer')
 -- }}}
