@@ -108,6 +108,8 @@ vim.diagnostic.config({
 })
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 
+capabilities = require 'blink.cmp'.get_lsp_capabilities(capabilities)
+
 local root_markers1 = {
   '.emmyrc.json',
   '.luarc.json',
@@ -133,6 +135,7 @@ vim.lsp.config('*', {
 
 	-- Options {{{2
 	vim.o.relativenumber = true
+	vim.o.fileformat='unix'
 	-- }}}
 
 	-- Reload Blink {{{2
