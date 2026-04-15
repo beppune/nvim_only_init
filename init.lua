@@ -61,7 +61,14 @@ end, { desc = 'Show Diagnostic float message', silent = true })
 -- #PLUGINS MANAGEMENT  {{{
 vim.pack.add({
     { src = "https://github.com/L3MON4D3/LuaSnip.git", name = "luasnip" },
+    {
+	src = "https://github.com/nvim-lualine/lualine.nvim",
+        name = "lualine",
+	load = true
+    },
 })
+
+require 'lualine'.setup({theme = 'horizon'})
 
 vim.api.nvim_create_autocmd({'BufEnter'}, {
     pattern = 'init.lua',
