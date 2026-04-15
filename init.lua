@@ -1,13 +1,3 @@
--- #HELPERS {{{
-function _G.ReloadPlugin(name)
-    local status, result = pcall(require(name))
-    if not status then
-	vim.notify( result, vim.log.level.INFO )
-	return false
-    end
-    return result
-end
--- }}}
 
 -- #OPTIONS {{{
 vim.o.shiftwidth = 4
@@ -68,6 +58,12 @@ vim.pack.add({
         name = "lualine",
 	load = true
     },
+    {
+	src = "https://github.com/saghen/blink.cmp.git",
+	name = "blink.cmp",
+	load = true,
+	-- See LSP section below
+    }
 })
 
 require 'lualine'.setup({theme = 'horizon'})
@@ -89,6 +85,7 @@ vim.api.nvim_create_autocmd({'BufEnter'}, {
 	vim.keymap.set({"i", "s"}, "<C-J>", function() ls.jump(-1) end, {silent = true})
     end
 })
+
 -- }}}
 
 -- #LSP {{{
@@ -127,6 +124,25 @@ vim.lsp.config('*', {
 	vim.keymap.set( 'n', '<Leader>s', function()
 	    vim.diagnostic.goto_prev()
 	end, { buffer = bufnr })
+
+	-- Options {{{2
+	vim.o.relativenumber = true
+	-- }}}
+
+	-- Reload Blink {{{2
+	package.loaded['blink.cmp'] = nil
+	require('blink.cmp').setup({
+	    keymap = {
+		preset = 'super-tab'
+	    },
+	    sources = {
+		default = { 'lsp', 'path', 'snippets', 'buffer' },
+	    },
+	    fuzzy = {
+		implementation = 'lua'
+	    },
+	})
+	-- }}}
     end
 })
 

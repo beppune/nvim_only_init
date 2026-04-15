@@ -1,5 +1,9 @@
 {
   "plugins": {
+    "blink.cmp": {
+      "rev": "456d38d1cd3743926f329204c2340f3e7840aad6",
+      "src": "https://github.com/saghen/blink.cmp.git"
+    },
     "lualine": {
       "rev": "a905eeebc4e63fdc48b5135d3bf8aea5618fb21c",
       "src": "https://github.com/nvim-lualine/lualine.nvim"
