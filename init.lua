@@ -38,6 +38,8 @@ end
 -- #MAPPINGS {{{
 vim.keymap.set( 'i', 'jj', '<Esc>', { silent = true } )
 vim.keymap.set( 'i', 'JJ', '<Esc>:', { silent = true } )
+vim.keymap.set( 'n', '*', '}', { silent = true, unique = true })
+vim.keymap.set( 'n', 'é', '{', { silent = true, unique = true })
 
 vim.g.mapleader = ' '
 vim.keymap.set( 'n', '<Leader>x', '<C-W>x', { silent = true } )
