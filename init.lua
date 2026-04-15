@@ -53,8 +53,6 @@ vim.keymap.set( 'n', '<Leader>n', ':tabnext<CR>', { silent = true })
 
 vim.keymap.set( 't', '<Esc>', '<C-\\><C-N>' , { silent = true })
 
-vim.keymap.set( 'n', '<CR>', 'zA' , { silent = true })
-
 vim.keymap.set( 'n', 'grd', function ()
     vim.diagnostic.open_float()
 end, { desc = 'Show Diagnostic float message', silent = true })
@@ -143,8 +141,14 @@ local rust_analyzer_config = {
     root_markers = { {'Cargo.tom'} },
     capabilities = capabilities,
     settings = {
-
-    }
+	['rust-analyzer'] = {
+	    completion = {
+		autoimport = {
+		    enable = true
+		},
+	    },
+	},
+    },
 }
 
 vim.lsp.config('lua_ls', lua_lsp_config)
