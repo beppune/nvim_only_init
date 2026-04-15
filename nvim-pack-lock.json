@@ -11,6 +11,14 @@
     "luasnip": {
       "rev": "a62e1083a3cfe8b6b206e7d3d33a51091df25357",
       "src": "https://github.com/L3MON4D3/LuaSnip.git"
+    },
+    "neogit": {
+      "rev": "e06745228600a585b88726fc9fba44a373c15a47",
+      "src": "https://github.com/NeogitOrg/neogit.git"
+    },
+    "plenary.nvim": {
+      "rev": "74b06c6c75e4eeb3108ec01852001636d85a932b",
+      "src": "https://github.com/nvim-lua/plenary.nvim.git"
     }
   }
 }

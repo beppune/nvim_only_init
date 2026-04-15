@@ -53,6 +53,7 @@ end, { desc = 'Show Diagnostic float message', silent = true })
 -- #PLUGINS MANAGEMENT  {{{
 vim.pack.add({
     { src = "https://github.com/L3MON4D3/LuaSnip.git", name = "luasnip" },
+    { src = "https://github.com/nvim-lua/plenary.nvim.git" },
     {
 	src = "https://github.com/nvim-lualine/lualine.nvim",
         name = "lualine",
@@ -63,6 +64,11 @@ vim.pack.add({
 	name = "blink.cmp",
 	load = true,
 	-- See LSP section below
+    },
+    {
+	src = "https://github.com/NeogitOrg/neogit.git",
+	name = "neogit",
+	load = true,
     }
 })
 
