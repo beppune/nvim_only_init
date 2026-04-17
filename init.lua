@@ -84,7 +84,7 @@ vim.api.nvim_create_autocmd({'BufEnter'}, {
 	    t('-- #'), i(1), t( { ' {{{',  '-- }}}' }),
 	})
 
-	ls.add_snippets("all", { ft })
+	ls.add_snippets("lua", { ft })
 
 	vim.keymap.set({"i"}, "<C-K>", function() ls.expand() end, {silent = true})
 	vim.keymap.set({"i", "s"}, "<C-L>", function() ls.jump( 1) end, {silent = true})
@@ -151,6 +151,7 @@ vim.lsp.config('*', {
 		implementation = 'lua'
 	    },
 	})
+	vim.notify("Blink loaded", vim.log.levels.INFO)
 	-- }}}
     end
 })
@@ -186,8 +187,20 @@ local rust_analyzer_config = {
 }
 
 vim.lsp.config('lua_ls', lua_lsp_config)
-vim.lsp.enable('lua_ls')
-
 vim.lsp.config('rust_analyzer', rust_analyzer_config)
-vim.lsp.enable('rust_analyzer')
+
+vim.api.nvim_create_autocmd( {'FileType'}, {
+    pattern = {'rust'},
+    callback = function ()
+	vim.lsp.enable('rust_analyzer')
+    end
+})
+
+vim.api.nvim_create_autocmd( {'FileType'}, {
+    pattern = {'lua'},
+    callback = function ()
+	vim.lsp.enable('lua_ls')
+    end
+})
+
 -- }}}
