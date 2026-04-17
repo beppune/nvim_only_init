@@ -126,11 +126,15 @@ local root_markers2 = {
 vim.lsp.config('*', {
     on_attach = function(_, bufnr)
 	vim.keymap.set( 'n', '<Leader>d', function()
-	    vim.diagnostic.goto_next()
+	    vim.diagnostic.jump { count=1, float=true }
 	end, { buffer = bufnr })
 
 	vim.keymap.set( 'n', '<Leader>s', function()
-	    vim.diagnostic.goto_prev()
+	    vim.diagnostic.jump { count=-1, float=true }
+	end, { buffer = bufnr })
+
+	vim.keymap.set( 'n', 'ghh', function()
+	    vim.lsp.buf.hover()
 	end, { buffer = bufnr })
 
 	-- Options {{{2
