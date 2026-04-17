@@ -165,6 +165,13 @@ local lua_lsp_config = {
     Lua = {
       codeLens = { enable = true },
       hint = { enable = true, semicolon = 'Disable' },
+      runtime = { version = 'LuaJIT' },
+      diagnostics = {
+	  globals = { 'vim' },
+      },
+      workspace = {
+	  library = vim.api.nvim_get_runtime_file("", true)
+      }
     },
   },
   capabilities = capabilities,
@@ -204,3 +211,33 @@ vim.api.nvim_create_autocmd( {'FileType'}, {
 })
 
 -- }}}
+
+
+function makeWterm()
+    local Wterm = {
+	show = function ()
+	    -- create buffer
+	    local buf = vim.api.nvim_create_buf(false, false)
+	    -- create window
+	    local w = vim.api.nvim_open_win(buf, true, {
+		border = 'rounded',
+		relative = 'editor',
+		style = 'minimal',
+		title = 'wterm',
+		row = 4,
+		col = 9,
+		height = 20,
+		width = 100,
+	    })
+	    -- open term in buffer
+	    vim.api.nvim_buf_call(buf, function ()
+---@diagnostic disable-next-line: deprecated
+		vim.fn.termopen(vim.o.shell)
+	    end)
+	    vim.cmd('startinsert')
+	end
+    }
+    return Wterm
+end
+
+package.loaded['wterm'] = makeWterm()
