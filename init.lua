@@ -223,22 +223,23 @@ function makeWterm()
 	    -- create buffer
 	    local buf = vim.api.nvim_create_buf(false, false)
 	    -- create window
-	    local w = vim.api.nvim_open_win(buf, true, {
+	    local _ = vim.api.nvim_open_win(buf, true, {
 		border = 'rounded',
 		relative = 'editor',
 		style = 'minimal',
 		title = 'wterm',
 		row = 4,
 		col = 9,
-		height = 20,
-		width = 100,
+		height = 30,
+		width = 160,
 	    })
 	    -- open term in buffer
 	    vim.api.nvim_buf_call(buf, function ()
----@diagnostic disable-next-line: deprecated
-		vim.fn.termopen(vim.o.shell)
+		---@diagnostic disable-next-line: deprecated
+		local ch = vim.fn.termopen(vim.o.shell)
+		vim.api.nvim_chan_send(ch, "echo Ciaone\r\n")
 	    end)
-	    vim.cmd('startinsert')
+	    -- vim.cmd('startinsert')
 	end
     }
     return Wterm
