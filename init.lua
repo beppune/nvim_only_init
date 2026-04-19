@@ -204,6 +204,7 @@ vim.api.nvim_create_autocmd( {'FileType'}, {
     pattern = {'rust'},
     callback = function ()
 	vim.lsp.enable('rust_analyzer')
+	vim.keymap.set('n', '<F9>', ':Wterm cargo run<CR>')
     end
 })
 
@@ -219,7 +220,16 @@ vim.api.nvim_create_autocmd( {'FileType'}, {
 
 function makeWterm()
     local Wterm = {
-	show = function ()
+	show = function (cmdline)
+	    -- calc term geometry
+	    local ww = vim.api.nvim_win_get_width(0)
+	    local wh = vim.api.nvim_win_get_height(0)
+	    local width = math.floor(ww * 0.8)
+	    local height = math.floor(wh * 0.8)
+
+	    local col = math.floor((ww - width)/2)
+	    local row = math.floor((wh - height)/2)
+
 	    -- create buffer
 	    local buf = vim.api.nvim_create_buf(false, false)
 	    -- create window
@@ -228,20 +238,31 @@ function makeWterm()
 		relative = 'editor',
 		style = 'minimal',
 		title = 'wterm',
-		row = 4,
-		col = 9,
-		height = 30,
-		width = 160,
+		row = row,
+		col = col,
+		height = height,
+		width = width,
 	    })
 	    -- open term in buffer
 	    vim.api.nvim_buf_call(buf, function ()
 		---@diagnostic disable-next-line: deprecated
 		local ch = vim.fn.termopen(vim.o.shell)
-		vim.api.nvim_chan_send(ch, "echo Ciaone\r\n")
+		if cmdline ~= nil then
+		    vim.api.nvim_chan_send(ch, cmdline .. "\r\n")
+		else
+		    vim.cmd('startinsert')
+		end
 	    end)
-	    -- vim.cmd('startinsert')
 	end
     }
+    vim.api.nvim_create_user_command('WRun', function (opts)
+	if #opts.args == 0 then
+	    return
+	end
+	if package.loaded['wterm'] ~= nil then
+	    package.loaded['wterm'].show(opts.args)
+	end
+    end, {nargs = '*'})
     return Wterm
 end
 
