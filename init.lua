@@ -160,6 +160,7 @@ vim.lsp.config('*', {
     end
 })
 
+-- #LUA_LS {{{2
 local lua_lsp_config = {
   cmd = { 'lua-language-server' },
   filetypes = { 'lua' },
@@ -180,7 +181,9 @@ local lua_lsp_config = {
   },
   capabilities = capabilities,
 }
+-- }}}
 
+-- #RURST_ANALYZER {{{2
 local rust_analyzer_config = {
     cmd = { 'rust-analyzer' },
     filetypes = { 'rust' },
@@ -196,13 +199,16 @@ local rust_analyzer_config = {
 	},
     },
 }
+-- }}}
 
+-- #CLANGD {{{2
 local clangd_config = {
     cmd = {'clangd', '--background-index', '--clang-tidy', '--completion-style=detailed'},
     filetypes = { 'c', 'cpp' },
     root_markers = { '.git', 'compile_commands.json', 'compile_flags.txt' },
     capabilities = capabilities,
 }
+-- }}}
 
 vim.lsp.config('lua_ls', lua_lsp_config)
 vim.lsp.config('rust_analyzer', rust_analyzer_config)
@@ -232,7 +238,7 @@ vim.api.nvim_create_autocmd( {'FileType'}, {
 
 -- }}}
 
-
+-- #WTERM {{{2
 function makeWterm()
     local Wterm = {
 	show = function (cmdline)
@@ -282,3 +288,5 @@ function makeWterm()
 end
 
 package.loaded['wterm'] = makeWterm()
+-- }}}
+
