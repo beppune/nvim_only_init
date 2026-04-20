@@ -197,8 +197,16 @@ local rust_analyzer_config = {
     },
 }
 
+local clangd_config = {
+    cmd = {'clangd', '--background-index', '--clang-tidy', '--completion-style=detailed'},
+    filetypes = { 'c', 'cpp' },
+    root_markers = { '.git', 'compile_commands.json', 'compile_flags.txt' },
+    capabilities = capabilities,
+}
+
 vim.lsp.config('lua_ls', lua_lsp_config)
 vim.lsp.config('rust_analyzer', rust_analyzer_config)
+vim.lsp.config('clangd', clangd_config)
 
 vim.api.nvim_create_autocmd( {'FileType'}, {
     pattern = {'rust'},
@@ -212,6 +220,13 @@ vim.api.nvim_create_autocmd( {'FileType'}, {
     pattern = {'lua'},
     callback = function ()
 	vim.lsp.enable('lua_ls')
+    end
+})
+
+vim.api.nvim_create_autocmd( {'FileType'}, {
+    pattern = {'c', 'cpp'},
+    callback = function ()
+	vim.lsp.enable('clangd')
     end
 })
 
