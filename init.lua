@@ -34,8 +34,11 @@ vim.keymap.set( 't', '<Esc>', '<C-\\><C-N>' , { silent = true })
 -- Brackets
 vim.keymap.set('i', '<C-l>', '{}<Left>')
 vim.keymap.set('i', '<C-k>', '[]<Left>')
-vim.keymap.set('i', '<C-h>', '()<Left>')
+vim.keymap.set('i', '<C-j>', '()<Left>')
 vim.keymap.set('n', 'ç', '%')
+
+-- Quotes
+vim.keymap.set({ 'n', 'i' }, '°', '\'')
 
 -- Windows
 vim.g.mapleader = ' '
