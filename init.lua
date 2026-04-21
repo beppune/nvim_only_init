@@ -48,12 +48,14 @@ vim.keymap.set( 't', '<Esc>', '<C-\\><C-N>' , { silent = true })
 vim.keymap.set( 'n', 'grd', function ()
     vim.diagnostic.open_float()
 end, { desc = 'Show Diagnostic float message', silent = true })
+
 -- }}}
 
 -- #PLUGINS MANAGEMENT  {{{
 vim.pack.add({
     { src = "https://github.com/L3MON4D3/LuaSnip.git", name = "luasnip" },
     { src = "https://github.com/nvim-lua/plenary.nvim.git" },
+    { src = "https://github.com/nvim-telescope/telescope.nvim.git", name = "telescope" },
     {
 	src = "https://github.com/nvim-lualine/lualine.nvim",
         name = "lualine",
@@ -92,6 +94,13 @@ vim.api.nvim_create_autocmd({'BufEnter'}, {
     end
 })
 
+-- }}}
+
+-- #TELESCOPE {{{
+local ts = require 'telescope.builtin'
+vim.keymap.set('n', '<leader>ff', ts.find_files, { desc = 'Telescope find files' })
+vim.keymap.set('n', '<leader>fb', ts.buffers, { desc = 'Telescope buffers' })
+vim.keymap.set('n', '<leader>fh', ts.help_tags, { desc = 'Telescope help tags' })
 -- }}}
 
 -- #LSP {{{

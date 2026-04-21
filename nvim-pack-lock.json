@@ -19,6 +19,10 @@
     "plenary.nvim": {
       "rev": "74b06c6c75e4eeb3108ec01852001636d85a932b",
       "src": "https://github.com/nvim-lua/plenary.nvim.git"
+    },
+    "telescope": {
+      "rev": "028d9a0695a0cc4cfa893889f8c408ed7ccc8adc",
+      "src": "https://github.com/nvim-telescope/telescope.nvim.git"
     }
   }
 }
