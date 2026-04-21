@@ -26,28 +26,36 @@ end
 -- }}}
 
 -- #MAPPINGS {{{
+-- Esc
 vim.keymap.set( 'i', 'jj', '<Esc>', { silent = true } )
 vim.keymap.set( 'i', 'JJ', '<Esc>:', { silent = true } )
-vim.keymap.set( 'n', '*', '}', { silent = true, unique = true })
-vim.keymap.set( 'n', 'é', '{', { silent = true, unique = true })
+vim.keymap.set( 't', '<Esc>', '<C-\\><C-N>' , { silent = true })
 
+-- Brackets
+vim.keymap.set('i', '<C-l>', '{}<Left>')
+vim.keymap.set('i', '<C-k>', '[]<Left>')
+vim.keymap.set('i', '<C-h>', '()<Left>')
+vim.keymap.set('n', 'ç', '%')
+
+-- Windows
 vim.g.mapleader = ' '
 vim.keymap.set( 'n', '<Leader>x', '<C-W>x', { silent = true } )
 vim.keymap.set( 'n', '<Leader>o', '<C-W>o', { silent = true } )
 vim.keymap.set( 'n', '<Leader>c', '<C-W>c', { silent = true } )
 vim.keymap.set( 'n', '<Leader>v', '<C-W>v', { silent = true } )
 vim.keymap.set( 'n', '<Leader>q', '<C-W>q', { silent = true } )
-
 vim.keymap.set( 'n', '<Leader>w', '<C-W>w', { silent = true } )
 
+-- Tabs
 vim.keymap.set( 'n', '<Leader>t', ':tabnew<CR>', { silent = true })
 vim.keymap.set( 'n', '<Leader>n', ':tabnext<CR>', { silent = true })
 
-vim.keymap.set( 't', '<Esc>', '<C-\\><C-N>' , { silent = true })
-
+-- Command line
 vim.keymap.set( 'n', '<Leader>g', ':', { silent = true })
+vim.keymap.set( 'n', '<Leader>s', '/', { silent = true })
 vim.keymap.set( 'c', 'jj', '<Esc>', { silent = true })
 
+-- Diagno
 vim.keymap.set( 'n', 'grd', function ()
     vim.diagnostic.open_float()
 end, { desc = 'Show Diagnostic float message', silent = true })
