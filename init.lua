@@ -45,6 +45,9 @@ vim.keymap.set( 'n', '<Leader>n', ':tabnext<CR>', { silent = true })
 
 vim.keymap.set( 't', '<Esc>', '<C-\\><C-N>' , { silent = true })
 
+vim.keymap.set( 'n', '<Leader>g', ':', { silent = true })
+vim.keymap.set( 'c', 'jj', '<Esc>', { silent = true })
+
 vim.keymap.set( 'n', 'grd', function ()
     vim.diagnostic.open_float()
 end, { desc = 'Show Diagnostic float message', silent = true })
