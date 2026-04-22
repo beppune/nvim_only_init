@@ -34,10 +34,6 @@ vim.keymap.set( 't', '<Esc>', '<C-\\><C-N>' , { silent = true })
 -- Brackets
 vim.keymap.set('n', 'ç', '%')
 
--- Quotes and Brackets
-vim.keymap.set({ 'n', 'i' }, 'ò', '\'')
-vim.keymap.set({ 'n', 'i' }, 'à', '"')
-
 -- Windows
 vim.g.mapleader = ' '
 vim.keymap.set( 'n', '<Leader>x', '<C-W>x', { silent = true } )
