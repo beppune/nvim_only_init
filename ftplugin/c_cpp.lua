@@ -9,3 +9,5 @@ local clangd_config = {
 vim.lsp.config('clangd', clangd_config)
 vim.lsp.enable('clangd')
 
+vim.keymap.set('i', ';', '<Esc>A;')
+

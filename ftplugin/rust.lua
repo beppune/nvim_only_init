@@ -18,3 +18,4 @@ local rust_analyzer_config = {
 vim.lsp.config('rust_analyzer', rust_analyzer_config)
 vim.lsp.enable('rust_analyzer')
 
+vim.keymap.set('i', ';', '<Esc>A;')

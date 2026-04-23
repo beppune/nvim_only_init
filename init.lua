@@ -33,6 +33,17 @@ vim.keymap.set( 't', '<Esc>', '<C-\\><C-N>' , { silent = true })
 
 -- Brackets
 vim.keymap.set('n', 'ç', '%')
+for k, m in pairs({
+    ['è'] = '\'\'<Left>',
+    ['é'] = '""<Left>',
+    ['ò'] = '{}<Left>',
+    ['à'] = '()<Left>',
+    ['ù'] = '[]<Left>',
+}) do
+
+    vim.keymap.set('i', k, m)
+
+end
 
 -- Windows
 vim.g.mapleader = ' '
