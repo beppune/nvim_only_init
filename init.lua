@@ -83,6 +83,7 @@ local ts = require 'telescope.builtin'
 vim.keymap.set('n', '<leader>ff', ts.find_files, { desc = 'Telescope find files' })
 vim.keymap.set('n', '<leader>fb', ts.buffers, { desc = 'Telescope buffers' })
 vim.keymap.set('n', '<leader>fh', ts.help_tags, { desc = 'Telescope help tags' })
+vim.keymap.set('n', '<leader>fc', ts.commands, { desc = 'Telescope help tags' })
 -- }}}
 
 -- #LSP {{{
